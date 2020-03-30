@@ -1,5 +1,11 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 project(pe-parser-library)
+
+message(STATUS "VERSION file: ${PROJECT_SOURCE_DIR}/../VERSION")
+
+file(READ "${PROJECT_SOURCE_DIR}/../VERSION" PEPARSE_VERSION)
+string(STRIP "${PEPARSE_VERSION}" PEPARSE_VERSION)
+add_compile_definitions(PEPARSE_VERSION="${PEPARSE_VERSION}")
 
 set(UNICODE_LIBRARY "any" CACHE STRING "Select a unicode library")
 set_property(CACHE UNICODE_LIBRARY PROPERTY STRINGS "any" "icu" "codecvt")
